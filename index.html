@@ -175,6 +175,12 @@ h2.title { font-family: var(--font-title); font-size: clamp(2rem, 5vw, 3rem); li
 .about-text p + p { margin-top: 16px; }
 .interests { display: flex; flex-wrap: wrap; gap: 8px; margin: 22px 0 6px; padding: 0; list-style: none; }
 .interests li { font-family: var(--font-type); font-size: .88rem; padding: 6px 12px; border: 1px solid var(--leather); color: var(--leather); border-radius: 2px; }
+.offcode-label { font-family: var(--font-type); font-size: .8rem; letter-spacing: .16em; color: var(--red); margin: 22px 0 8px; }
+.offcode { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; padding: 0; list-style: none; }
+.offcode li { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-type); font-size: .88rem; padding: 6px 12px; border: 1px solid var(--leather); color: var(--leather); border-radius: 2px; transition: transform .25s, background .25s, color .25s; }
+.offcode li svg { flex: none; transition: transform .35s; }
+.offcode li:hover { background: var(--leather); color: var(--gold-hi); transform: translateY(-2px); }
+.offcode li:hover svg { transform: rotate(-12deg) scale(1.12); }
 .info-cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; margin-top: 28px; }
 .info-card { background: var(--leather); color: var(--on-dark); padding: 20px 22px; border-radius: 2px; border: 1px solid var(--leather-2); box-shadow: inset 0 0 0 4px var(--leather), inset 0 0 0 5px rgba(196,163,90,.5); position: relative; }
 .info-card h3 { font-family: var(--font-type); font-size: .8rem; letter-spacing: .18em; color: var(--gold-hi); font-weight: 400; margin-bottom: 8px; }
@@ -420,7 +426,7 @@ footer .copy { margin-top: 26px; font-size: .85rem; color: var(--on-dark-muted);
           <figcaption>Cali, Colombia</figcaption>
         </figure>
         <div class="about-text reveal">
-          <p>I'm a Systems Engineering student at Universidad Icesi. I like the part of software where data, models and real systems meet, and I'm aiming to specialize in data science.</p>
+          <p>I'm Juan David, and I like the part of software where data, models and real systems meet. I study Systems Engineering at Universidad Icesi in Cali, I'm in my ninth semester working on my degree project, and I'm aiming to specialize in data science.</p>
           <p>Most of my work so far is team projects that go from the idea to something running, with the API, the interface and the deployment included.</p>
           <ul class="interests" aria-label="Interests">
             <li>Software development</li>
@@ -428,11 +434,18 @@ footer .copy { margin-top: 26px; font-size: .85rem; color: var(--on-dark-muted);
             <li>Artificial intelligence</li>
             <li>Technology</li>
           </ul>
+          <div class="offcode-label">OUTSIDE THE CODE</div>
+          <ul class="offcode" aria-label="Interests outside of code">
+            <li><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 8h12a4 4 0 0 1 4 4v1a3 3 0 0 1-5.2 2l-1.3-1.5h-7L7.2 15A3 3 0 0 1 2 13v-1a4 4 0 0 1 4-4z"/><path d="M7 10.5v3M5.5 12h3"/><circle cx="16" cy="11" r=".9"/><circle cx="18.2" cy="13" r=".9"/></svg>Videogames</li>
+            <li><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8l3.5 2.5-1.3 4.1H9.8L8.5 10.5z"/><path d="M12 8V3.2M15.5 10.5l4.6-1.4M14.2 14.6l2.8 3.9M9.8 14.6l-2.8 3.9M8.5 10.5L3.9 9.1"/></svg>Football</li>
+            <li><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 3v18M3 12h18"/><path d="M5.6 5.6c3 2.6 3 10.2 0 12.8M18.4 5.6c-3 2.6-3 10.2 0 12.8"/></svg>Basketball</li>
+            <li><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18V5l11-2v13"/><circle cx="6.5" cy="18" r="2.5"/><circle cx="17.5" cy="16" r="2.5"/></svg>Music</li>
+          </ul>
           <div class="info-cards">
             <div class="info-card">
               <svg class="compass" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="46" fill="none" stroke="#C4A35A" stroke-width="2"/><circle cx="50" cy="50" r="38" fill="none" stroke="#C4A35A" stroke-width="1" stroke-dasharray="2 4"/><path d="M50 6 L58 50 L50 94 L42 50 Z" fill="#C4A35A"/><path d="M6 50 L50 42 L94 50 L50 58 Z" fill="none" stroke="#C4A35A" stroke-width="1.5"/></svg>
-              <h3>CURRENT STATUS</h3>
-              <p>Systems Engineering Student<br>Universidad Icesi<br>Cali, Colombia</p>
+              <h3>CURRENT STAGE</h3>
+              <p>Ninth semester<br>Degree project in progress<br>Universidad Icesi, Cali</p>
             </div>
             <div class="info-card">
               <h3>LOOKING FOR</h3>
