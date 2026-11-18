@@ -221,6 +221,10 @@ h2.title { font-family: var(--font-title); font-size: clamp(2rem, 5vw, 3rem); li
 .featured:hover { transform: translateY(-4px); box-shadow: 0 16px 30px rgba(42,29,18,.3); }
 .featured .map { position: absolute; inset: 0; width: 100%; height: 100%; opacity: .32; pointer-events: none; }
 .featured > * { position: relative; }
+.featured.has-shot { grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); }
+.shot { display: block; width: 100%; height: auto; border: 3px solid var(--on-paper); background: var(--paper); box-shadow: 0 10px 22px rgba(42,29,18,.35); }
+.featured .actions { gap: 10px; }
+@media (max-width: 900px) { .featured.has-shot { grid-template-columns: minmax(0, 1fr); } }
 .featured .flag { display: inline-block; font-family: var(--font-type); letter-spacing: .18em; font-size: .8rem; color: var(--paper); background: var(--red); padding: 4px 12px; transform: rotate(-1.5deg); }
 .featured h3 { font-family: var(--font-title); font-size: clamp(1.7rem, 4vw, 2.5rem); line-height: 1.1; margin-top: 14px; text-wrap: balance; }
 .featured .stack { font-family: var(--font-type); font-size: .92rem; margin-top: 10px; color: var(--leather); }
@@ -645,7 +649,10 @@ const PROJECTS = [
     role: "Developer, degree project for INNLAB",
     description: "IRL Diagnostic System guides an initiative through a questionnaire, builds a maturity profile with the KTH model and identifies the gaps that matter most. A second phase goes deeper and produces a roadmap, a recommended service and a report for INNLAB. It is a monorepo with React on the front end and NestJS, TypeORM and PostgreSQL on the back end, designed with domain-driven and hexagonal architecture. It evolved from CBL Connector, the first version of the idea, and it is still in development on a private institutional repository.",
     contribution: ["Requirements and backlog. Work on the software requirements specification and its refinement into user stories and epics.", "Architecture. Work on the diagnostic module, including moving the orchestration of the diagnostic flow out of the front end and into a single use case on the back end.", "Delivery. The first sprint is delivered with nine user stories, and this semester covers the gap report and roadmap, the service portfolio, exports and deployment."],
-    github: ""
+    github: "",
+    demo: "https://sistema-diagnostico-irl-api.vercel.app/",
+    image: "images/irl-diagnostico.jpg",
+    imageAlt: "Home screen of the IRL Diagnostic System with the six-dimension maturity radar chart"
   },
   {
     id: "agent", title: "AI Conversation Agent", plate: "LLM · RAG", seed: 3,
@@ -836,9 +843,14 @@ function plate(seed, label, big) {
 }
 
 /* Proyectos */
+function shot(p) {
+  return p.image
+    ? `<img class="plate shot" src="${esc(p.image)}" alt="${esc(p.imageAlt || p.title)}" width="1400" height="845" loading="lazy">`
+    : plate(p.seed, p.plate);
+}
 const feat = PROJECTS.find(p => p.featured), rest = PROJECTS.filter(p => !p.featured);
 $("#featuredSlot").innerHTML = `
-  <article class="featured" data-project="${feat.id}">
+  <article class="featured${feat.image ? " has-shot" : ""}" data-project="${feat.id}">
     <svg class="map" viewBox="0 0 800 320" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
       <g fill="none" stroke="#8E7A4E" stroke-width="1.2">
         <path d="M0 60 C120 20 200 110 320 70 S560 30 800 90"/><path d="M0 110 C130 70 210 160 330 120 S570 80 800 140"/>
@@ -853,9 +865,9 @@ $("#featuredSlot").innerHTML = `
       <h3>${esc(feat.title.toUpperCase())}</h3>
       <div class="stack">${feat.tech.slice(0, 5).map(esc).join(" • ")}</div>
       <p class="short">${esc(feat.short)}</p>
-      <div class="actions"><button type="button" class="btn dark" data-open="${feat.id}">Explore project</button></div>
+      <div class="actions"><button type="button" class="btn dark" data-open="${feat.id}">Explore project</button>${feat.demo ? `<a class="btn dark" href="${esc(feat.demo)}" target="_blank" rel="noopener">Live demo</a>` : ""}</div>
     </div>
-    <div>${plate(feat.seed, feat.plate, true)}</div>
+    <div>${shot(feat)}</div>
   </article>`;
 $("#projectsGrid").innerHTML = rest.map(p => `
   <article class="card" data-project="${p.id}">
@@ -876,11 +888,12 @@ function projectModal(p, trigger) {
     <div class="mk">TECHNOLOGIES</div><div class="chips" style="margin-top:6px">${p.tech.map(t => `<span class="chip">${esc(t)}</span>`).join("")}</div>
     <div class="mk">DESCRIPTION</div><p>${esc(p.description)}</p>
     <div class="mk">MY CONTRIBUTION</div><ul>${p.contribution.map(c => `<li>${esc(c)}</li>`).join("")}</ul>
-    ${plate(p.seed, p.plate)}
-    ${p.github ? `<div class="actions"><a class="btn dark" href="${esc(p.github)}" target="_blank" rel="noopener">GitHub</a></div>` : ""}
+    ${shot(p)}
+    ${(p.demo || p.github) ? `<div class="actions">${p.demo ? `<a class="btn dark" href="${esc(p.demo)}" target="_blank" rel="noopener">Live demo</a>` : ""}${p.github ? `<a class="btn dark" href="${esc(p.github)}" target="_blank" rel="noopener">GitHub</a>` : ""}</div>` : ""}
   `, trigger);
 }
 function projectClick(e) {
+  if (e.target.closest("a")) return;
   const card = e.target.closest("[data-project]"); if (!card) return;
   const p = PROJECTS.find(x => x.id === card.dataset.project); if (!p) return;
   projectModal(p, card.querySelector("[data-open]"));
