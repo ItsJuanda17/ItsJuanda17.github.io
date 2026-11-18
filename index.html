@@ -224,6 +224,9 @@ h2.title { font-family: var(--font-title); font-size: clamp(2rem, 5vw, 3rem); li
 .featured.has-shot { grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); }
 .shot { display: block; width: 100%; height: auto; border: 3px solid var(--on-paper); background: var(--paper); box-shadow: 0 10px 22px rgba(42,29,18,.35); }
 .featured .actions { gap: 10px; }
+.card .shot { border: 0; border-bottom: 1px solid var(--line-paper); box-shadow: none; }
+.card .actions { margin-top: 8px; gap: 10px; }
+.card .actions .btn { margin-top: 0; }
 @media (max-width: 900px) { .featured.has-shot { grid-template-columns: minmax(0, 1fr); } }
 .featured .flag { display: inline-block; font-family: var(--font-type); letter-spacing: .18em; font-size: .8rem; color: var(--paper); background: var(--red); padding: 4px 12px; transform: rotate(-1.5deg); }
 .featured h3 { font-family: var(--font-title); font-size: clamp(1.7rem, 4vw, 2.5rem); line-height: 1.1; margin-top: 14px; text-wrap: balance; }
@@ -661,7 +664,10 @@ const PROJECTS = [
     role: "Co-developer, team of two",
     description: "Agent built with LangChain that consumes MCP services exposed through FastAPI. The services cover emotion analysis, thread summaries, propagation metrics and semantic search. It has a development mode that avoids paid APIs and a demo mode with OpenAI and LangSmith traces.",
     contribution: ["Worked with a teammate on the services, the RAG index and the agent.", "Validated the flow with LangSmith traces and tests with pytest.", "Prepared the Dockerfile and Render configuration for deployment."],
-    github: "https://github.com/ItsJuanda17/ai-conversation-agent"
+    github: "https://github.com/ItsJuanda17/ai-conversation-agent",
+    demo: "https://ai-conversation-agent.onrender.com/",
+    image: "images/ai-conversation-agent.jpg",
+    imageAlt: "Emotions screen of the AI Conversation Agent with the emotional distribution of a set of comments"
   },
   {
     id: "winback", title: "Reactivaciones Winback", plate: "MACHINE LEARNING", seed: 7,
@@ -872,12 +878,12 @@ $("#featuredSlot").innerHTML = `
 $("#projectsGrid").innerHTML = rest.map(p => `
   <article class="card" data-project="${p.id}">
     ${p.stamp ? `<span class="stamp">${esc(p.stamp)}</span>` : ""}
-    ${plate(p.seed, p.plate)}
+    ${shot(p)}
     <div class="body">
       <h3>${esc(p.title)}</h3>
       <p>${esc(p.short)}</p>
       <div class="chips">${p.tech.map(t => `<span class="chip">${esc(t)}</span>`).join("")}</div>
-      <button type="button" class="btn dark" data-open="${p.id}">View project</button>
+      <div class="actions"><button type="button" class="btn dark" data-open="${p.id}">View project</button>${p.demo ? `<a class="btn dark" href="${esc(p.demo)}" target="_blank" rel="noopener">Live demo</a>` : ""}</div>
     </div>
   </article>`).join("");
 
