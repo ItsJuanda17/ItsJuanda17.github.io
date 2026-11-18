@@ -196,6 +196,14 @@ h2.title { font-family: var(--font-title); font-size: clamp(2rem, 5vw, 3rem); li
 }
 .skill-card:hover { transform: translateY(-4px); box-shadow: 0 12px 24px rgba(0,0,0,.4), inset 0 0 0 4px var(--leather), inset 0 0 0 5px var(--gold); }
 .skill-card h3 { font-family: var(--font-type); font-weight: 400; letter-spacing: .16em; font-size: .85rem; color: var(--gold-hi); margin-bottom: 14px; }
+.soft { margin-top: 72px; }
+.soft-title { font-family: var(--font-title); font-size: clamp(1.5rem, 4vw, 2.1rem); line-height: 1.1; color: var(--paper); margin-top: 6px; }
+.soft-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px; margin-top: 28px; }
+.skill-card .lead { font-family: var(--font-serif); font-size: 1.08rem; line-height: 1.5; color: var(--on-dark); }
+.apart { margin-top: 26px; background: var(--paper); color: var(--on-paper); padding: 26px 30px; border: 3px double var(--gold); border-radius: 2px; box-shadow: 0 14px 30px rgba(0,0,0,.45); position: relative; }
+.apart .eyebrow { color: var(--red); }
+.apart p { font-family: var(--font-serif); font-size: 1.2rem; line-height: 1.55; margin-top: 8px; max-width: 70ch; }
+@media (max-width: 900px) { .soft-grid { grid-template-columns: minmax(0, 1fr); } }
 .techs { display: flex; flex-wrap: wrap; gap: 8px; }
 .tech {
   font-family: var(--font-body); font-weight: 500; font-size: .92rem; padding: 7px 12px; min-height: 36px;
@@ -467,6 +475,32 @@ footer .copy { margin-top: 26px; font-size: .85rem; color: var(--on-dark-muted);
       <div class="divider" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 26 26"><path d="M13 2 L15.2 10.8 L24 13 L15.2 15.2 L13 24 L10.8 15.2 L2 13 L10.8 10.8 Z" fill="currentColor"/></svg></div>
       <div class="skills-grid reveal" id="skillsGrid"></div>
       <p class="hint">Tap any tool to see how I have used it.</p>
+      <div class="soft reveal">
+        <div class="eyebrow">Beyond the toolkit</div>
+        <h3 class="soft-title">HOW I WORK</h3>
+        <div class="soft-grid">
+        <div class="skill-card">
+          <h3>TEAMWORK</h3>
+          <p class="lead">Every project here was built with other people, in teams of two or three, splitting the work across data, model and application layers.</p>
+        </div>
+        <div class="skill-card">
+          <h3>COMMUNICATION</h3>
+          <p class="lead">I write the technical reports and the API documentation so someone else can follow the work, check it and pick it up.</p>
+        </div>
+        <div class="skill-card">
+          <h3>PROBLEM SOLVING</h3>
+          <p class="lead">When the activity data was imbalanced, my team cut 11 classes down to 4 and improved the features instead of forcing the model.</p>
+        </div>
+        <div class="skill-card">
+          <h3>DELIVERY AND LEARNING</h3>
+          <p class="lead">I work with real clients, like INNLAB, and ship in sprints. I move between Java, Python and TypeScript, and between back end, machine learning and cloud, as each project asks.</p>
+        </div>
+        </div>
+        <div class="apart">
+          <div class="eyebrow">What sets me apart</div>
+          <p>I like the whole path, from the idea to something running. I can train and explain a model, build the API and the interface around it, deploy it, and document each step so other people can trust the result.</p>
+        </div>
+      </div>
     </div>
   </section>
 
