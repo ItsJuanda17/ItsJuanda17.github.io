@@ -670,6 +670,17 @@ const PROJECTS = [
     imageAlt: "Emotions screen of the AI Conversation Agent with the emotional distribution of a set of comments"
   },
   {
+    id: "comercial", title: "Commercial AI Agent", plate: "AI AGENT", seed: 13,
+    short: "A conversational sales agent for a university admissions channel that answers on WhatsApp and Telegram, with an operations dashboard.",
+    tech: ["Python", "FastAPI", "Gemini", "RAG", "Redis", "PostgreSQL", "Streamlit", "Docker"],
+    role: "Team member, university team project",
+    description: "MVP of a commercial agent for the people channel of Universidad Icesi. A FastAPI orchestrator runs a Gemini tool-use loop with five tools, grounds answers in a knowledge base through RAG, keeps sessions in Redis and PostgreSQL, and hands leads to a CRM adapter. It talks to users through the WhatsApp Cloud API and a Telegram bot, and a Streamlit dashboard shows KPIs, a chat console, escalations and a quality evaluation. The repository includes Docker Compose and 21 test cases.",
+    contribution: ["Moved the agent from Anthropic models to Gemini on the AI Studio free tier.", "Built the interactive web console to test conversations and a RAG that runs locally without a vector server.", "Added the Telegram channel and a conversation viewer in the dashboard."],
+    github: "https://github.com/gerson05/Chat-de-WhatsApp-IA2",
+    image: "images/commercial-ai-agent.jpg",
+    imageAlt: "Streamlit dashboard of the commercial AI system with KPI cards and charts"
+  },
+  {
     id: "winback", title: "Reactivaciones Winback", plate: "MACHINE LEARNING", seed: 7,
     short: "An end to end MVP to win back customers who left a prepaid medicine service, from synthetic data to a dashboard and a chatbot.",
     tech: ["Python", "scikit-learn", "XGBoost", "SHAP", "FastAPI", "React"],
